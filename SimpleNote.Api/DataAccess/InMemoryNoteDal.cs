@@ -4,7 +4,7 @@ namespace SimpleNote.Api.DataAccess
 {
     public class InMemoryNoteDal
     {
-        private List<Note> _notes = new List<Note>()
+        private static List<Note> _notes = new List<Note>()
         {
             new Note{Id = 1, Title = "To do list", Content = "do workout", Category = "Daily", CreationDate = DateTime.UtcNow},
             new Note{Id = 2, Title = "Homeworks", Content = "do api", Category = "Weekly", CreationDate = new DateTime(2023, 10, 25)},
@@ -14,6 +14,22 @@ namespace SimpleNote.Api.DataAccess
         public List<Note> GetAll()
         {
             return _notes;
+        }
+
+        public Note Add(Note note)
+        {
+            if (_notes.Count == 0)
+            {
+                note.Id = 1;
+            }
+            else
+            {
+                note.Id = _notes.Max(n => n.Id) + 1;
+            }
+
+            note.CreationDate = DateTime.UtcNow;
+            _notes.Add(note);
+            return note;
         }
     }
 }

@@ -18,5 +18,12 @@ namespace SimpleNote.Api.Controllers
             return Ok(notes);
         }
 
+        [HttpPost]
+        public IActionResult Add(Note note)
+        {
+            Note newNote = _inMemoryNoteDal.Add(note);
+            return Created($"api/notes/{newNote.Id}", newNote);
+        }
+
     }
 }
