@@ -25,5 +25,17 @@ namespace SimpleNote.Api.Controllers
             return Created($"api/notes/{newNote.Id}", newNote);
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            Note? foundNote = _inMemoryNoteDal.GetById(id);
+
+            if (foundNote == null)
+            {
+                return NotFound();
+            }
+            
+             return Ok(foundNote);
+        }
     }
 }

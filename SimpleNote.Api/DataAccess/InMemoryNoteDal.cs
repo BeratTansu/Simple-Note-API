@@ -31,5 +31,10 @@ namespace SimpleNote.Api.DataAccess
             _notes.Add(note);
             return note;
         }
+
+        public Note? GetById(int id)
+        {
+            return _notes.FirstOrDefault(n => n.Id == id);
+        }
     }
 }
