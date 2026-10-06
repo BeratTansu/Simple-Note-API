@@ -49,5 +49,16 @@ namespace SimpleNote.Api.DataAccess
             foundNote.Category = updatedNote.Category;
             return true;
         }
+
+        public bool Delete(int id)
+        {
+            Note? foundNote = GetById(id);
+            if (foundNote == null)
+            {
+                return false;
+            }
+            _notes.Remove(foundNote);
+            return true;
+        }
     }
 }

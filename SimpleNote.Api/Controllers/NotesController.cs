@@ -18,6 +18,7 @@ namespace SimpleNote.Api.Controllers
             return Ok(notes);
         }
 
+        // TODO: Id reuse after deleting max id; replaced by DB identity in step 3
         [HttpPost]
         public IActionResult Add(Note note)
         {
@@ -43,11 +44,23 @@ namespace SimpleNote.Api.Controllers
         {
             bool isUpdated = _inMemoryNoteDal.Update(id, note);
             
-            if (isUpdated == true)
+            if (!isUpdated)
             {
-                return NoContent();
+                return NotFound();
             }
-            return NotFound();
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            bool isDeleted = _inMemoryNoteDal.Delete(id);
+
+            if (!isDeleted)
+            {
+                return NotFound();
+            }
+            return NoContent();
         }
     }
 }
