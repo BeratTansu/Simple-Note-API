@@ -37,5 +37,17 @@ namespace SimpleNote.Api.Controllers
             
              return Ok(foundNote);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(int id, Note note)
+        {
+            bool isUpdated = _inMemoryNoteDal.Update(id, note);
+            
+            if (isUpdated == true)
+            {
+                return NoContent();
+            }
+            return NotFound();
+        }
     }
 }

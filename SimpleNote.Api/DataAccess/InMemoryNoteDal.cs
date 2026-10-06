@@ -36,5 +36,18 @@ namespace SimpleNote.Api.DataAccess
         {
             return _notes.FirstOrDefault(n => n.Id == id);
         }
+
+        public bool Update(int id, Note updatedNote)
+        {
+            Note? foundNote = GetById(id);
+            if (foundNote == null)
+            {
+                return false;
+            }
+            foundNote.Title = updatedNote.Title;
+            foundNote.Content = updatedNote.Content;
+            foundNote.Category = updatedNote.Category;
+            return true;
+        }
     }
 }
