@@ -18,10 +18,14 @@ namespace SimpleNote.Api.Controllers
             return Ok(notes);
         }
 
-        // TODO: Id reuse after deleting max id; replaced by DB identity in step 3
         [HttpPost]
         public IActionResult Add(Note note)
         {
+            if (string.IsNullOrWhiteSpace(note.Title))
+            {
+                return BadRequest("Title cannot be empty.");
+            }
+
             Note newNote = _inMemoryNoteDal.Add(note);
             return Created($"api/notes/{newNote.Id}", newNote);
         }
@@ -42,6 +46,11 @@ namespace SimpleNote.Api.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, Note note)
         {
+            if (string.IsNullOrWhiteSpace(note.Title))
+            {
+                return BadRequest("Title cannot be empty.");
+            }
+
             bool isUpdated = _inMemoryNoteDal.Update(id, note);
             
             if (!isUpdated)
