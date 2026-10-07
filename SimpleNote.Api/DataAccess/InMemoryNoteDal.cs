@@ -61,5 +61,21 @@ namespace SimpleNote.Api.DataAccess
             _notes.Remove(foundNote);
             return true;
         }
+
+        public List<Note> Search(string? title, string? category)
+        {
+            IEnumerable<Note> filteredNotes = _notes;
+            
+            if (!string.IsNullOrWhiteSpace(title))
+            {
+                filteredNotes = filteredNotes.Where(n => n.Title.Contains(title, StringComparison.OrdinalIgnoreCase));
+            }
+            if (!string.IsNullOrWhiteSpace(category))
+            {
+                filteredNotes = filteredNotes.Where(n => n.Category.Equals(category, StringComparison.OrdinalIgnoreCase));
+            }
+
+            return filteredNotes.ToList();
+        }
     }
 }

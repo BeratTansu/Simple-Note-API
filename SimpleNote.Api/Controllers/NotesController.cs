@@ -12,9 +12,9 @@ namespace SimpleNote.Api.Controllers
         private InMemoryNoteDal _inMemoryNoteDal = new InMemoryNoteDal();
 
         [HttpGet]
-        public IActionResult GetAll()
+        public IActionResult GetAll(string? title, string? category)
         {
-            List<Note> notes = _inMemoryNoteDal.GetAll();
+            List<Note> notes = _inMemoryNoteDal.Search(title, category);
             return Ok(notes);
         }
 
