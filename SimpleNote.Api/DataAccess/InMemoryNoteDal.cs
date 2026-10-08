@@ -16,7 +16,6 @@ namespace SimpleNote.Api.DataAccess
             return _notes;
         }
 
-        // TODO: Id reuse after deleting max id; replaced by DB identity in step 3
         public Note Add(Note note)
         {
             if (_notes.Count == 0)

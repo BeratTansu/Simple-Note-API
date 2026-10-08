@@ -18,7 +18,7 @@ namespace SimpleNote.Api.DataAccess
 
         public Note Add(Note note)
         {
-            note.CreationDate = DateTime.Now;
+            note.CreationDate = DateTime.UtcNow;
             _context.Notes.Add(note);
             _context.SaveChanges();
             return note;
