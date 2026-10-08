@@ -9,17 +9,17 @@ namespace SimpleNote.Api.Controllers
 
     public class NotesController : ControllerBase
     {
-        public NotesController(EfNoteDal efNoteDal)
+        public NotesController(INoteDal noteDal)
         {
-            _efNoteDal = efNoteDal;
+            _noteDal = noteDal;
         }
 
-        private readonly EfNoteDal _efNoteDal;
+        private readonly INoteDal _noteDal;
 
         [HttpGet]
         public IActionResult GetAll(string? title, string? category)
         {
-            List<Note> notes = _efNoteDal.Search(title, category);
+            List<Note> notes = _noteDal.Search(title, category);
             return Ok(notes);
         }
 
@@ -31,14 +31,14 @@ namespace SimpleNote.Api.Controllers
                 return BadRequest("Title cannot be empty.");
             }
 
-            Note newNote = _efNoteDal.Add(note);
+            Note newNote = _noteDal.Add(note);
             return Created($"api/notes/{newNote.Id}", newNote);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            Note? foundNote = _efNoteDal.GetById(id);
+            Note? foundNote = _noteDal.GetById(id);
 
             if (foundNote == null)
             {
@@ -56,7 +56,7 @@ namespace SimpleNote.Api.Controllers
                 return BadRequest("Title cannot be empty.");
             }
 
-            bool isUpdated = _efNoteDal.Update(id, note);
+            bool isUpdated = _noteDal.Update(id, note);
             
             if (!isUpdated)
             {
@@ -68,7 +68,7 @@ namespace SimpleNote.Api.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            bool isDeleted = _efNoteDal.Delete(id);
+            bool isDeleted = _noteDal.Delete(id);
 
             if (!isDeleted)
             {

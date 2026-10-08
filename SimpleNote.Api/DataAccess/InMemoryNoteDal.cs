@@ -2,7 +2,7 @@
 
 namespace SimpleNote.Api.DataAccess
 {
-    public class InMemoryNoteDal
+    public class InMemoryNoteDal : INoteDal
     {
         private static List<Note> _notes = new List<Note>()
         {

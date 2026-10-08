@@ -2,7 +2,7 @@
 
 namespace SimpleNote.Api.DataAccess
 {
-    public class EfNoteDal
+    public class EfNoteDal : INoteDal
     {
         public EfNoteDal(SimpleNoteDbContext simpleNoteDbContext)
         {

@@ -11,7 +11,7 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddDbContext<SimpleNoteDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<EfNoteDal>();
+builder.Services.AddScoped<INoteDal, EfNoteDal>();
 
 var app = builder.Build();
 
