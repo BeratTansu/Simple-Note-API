@@ -1,0 +1,203 @@
+{
+  "info": {
+    "_postman_id": "dc62bec4-4524-4a80-900d-06f57cb8c8b9",
+    "name": "Simple Note API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "52501998",
+    "_collection_link": "https://go.postman.co/collection/52501998-dc62bec4-4524-4a80-900d-06f57cb8c8b9?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get All Notes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7155/api/notes",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7155",
+          "path": [
+            "api",
+            "notes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create Note",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Market\",\r\n    \"Content\": \"buy milk\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7155/api/notes",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7155",
+          "path": [
+            "api",
+            "notes"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Note By Id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7155/api/notes/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7155",
+          "path": [
+            "api",
+            "notes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Note",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Market\",\r\n    \"content\": \"buy milk\",\r\n    \"category\": \"Daily\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7155/api/notes/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7155",
+          "path": [
+            "api",
+            "notes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Note",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "https://localhost:7155/api/notes/1",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7155",
+          "path": [
+            "api",
+            "notes",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search - By Title",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 999,\r\n    \"title\": \"\",\r\n    \"content\": \"new content\",\r\n    \"category\": \"Work\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7155/api/notes/?title=mar",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7155",
+          "path": [
+            "api",
+            "notes",
+            ""
+          ],
+          "query": [
+            {
+              "key": "title",
+              "value": "mar"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Search - By Category",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"id\": 999,\r\n    \"title\": \"\",\r\n    \"content\": \"new content\",\r\n    \"category\": \"Work\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://localhost:7155/api/notes?category=uncategorized",
+          "protocol": "https",
+          "host": [
+            "localhost"
+          ],
+          "port": "7155",
+          "path": [
+            "api",
+            "notes"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "uncategorized"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
